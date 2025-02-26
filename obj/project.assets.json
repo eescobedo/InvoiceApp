@@ -981,6 +981,9 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
+      "NuGet.CommandLine/6.13.1": {
+        "type": "package"
+      },
       "System.ClientModel/1.0.0": {
         "type": "package",
         "dependencies": {
@@ -3516,6 +3519,23 @@
         "readme.md"
       ]
     },
+    "NuGet.CommandLine/6.13.1": {
+      "sha512": "eF2EAyQYl0YW4k/dag8eanrsp6ryEIemVVNSZWXdA53iF4EApE+C4aVfgG9sAgOrpb9kA5PHuNkovBjeZ3xMDQ==",
+      "type": "package",
+      "path": "nuget.commandline/6.13.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NOTICES.txt",
+        "README.md",
+        "icon.png",
+        "nuget.commandline.6.13.1.nupkg.sha512",
+        "nuget.commandline.nuspec",
+        "tools/NuGet.exe",
+        "tools/NuGet.pdb"
+      ]
+    },
     "System.ClientModel/1.0.0": {
       "sha512": "I3CVkvxeqFYjIVEP59DnjbeoGNfo/+SZrCLpRz2v/g0gpCHaEMPtWSY0s9k/7jR1rAsLNg2z2u1JRB76tPjnIw==",
       "type": "package",
@@ -4706,35 +4726,30 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
-      "Microsoft.EntityFrameworkCore.Tools >= 9.0.2"
+      "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
+      "NuGet.CommandLine >= 6.13.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\eriec\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/enner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\eriec\\source\\repos\\InvoiceApp\\InvoiceApp.csproj",
+      "projectUniqueName": "/Users/enner/Code/invoiceapp/InvoiceApp.csproj",
       "projectName": "InvoiceApp",
-      "projectPath": "C:\\Users\\eriec\\source\\repos\\InvoiceApp\\InvoiceApp.csproj",
-      "packagesPath": "C:\\Users\\eriec\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\eriec\\source\\repos\\InvoiceApp\\obj\\",
+      "projectPath": "/Users/enner/Code/invoiceapp/InvoiceApp.csproj",
+      "packagesPath": "/Users/enner/.nuget/packages/",
+      "outputPath": "/Users/enner/Code/invoiceapp/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\eriec\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/enner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4768,6 +4783,12 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[9.0.2, )"
+          },
+          "NuGet.CommandLine": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[6.13.1, )"
           }
         },
         "imports": [
@@ -4789,7 +4810,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
