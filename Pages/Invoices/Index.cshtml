@@ -6,7 +6,7 @@
 
 
 <h2 class="text-center mb-3">Invoices</h2>
-<p class="btn btn-primary" asp-page="/Invoices/Create">New Invoice</p>
+<a class="btn btn-primary" asp-page="/Invoices/Create">New Invoice</a>
 
 <table class="table">
   <thead>
@@ -23,21 +23,22 @@
     </tr>
   </thead>
   <tbody class="table-group-divider">
-    @foreach (var invoice in Model.invoices)
-    {
-      <tr>
-        <td>@invoice.Id</td>
-        <td>@invoice.Number</td>
-        <td>@invoice.Status</td>
-        <td>@invoice.ClientName</td>
-        <td>@(invoice.Quantity* invoice.UnitPrice)$</td>
-        <td>@invoice.IssueDate</td>
-        <td>@invoice.DueDate</td>
-        <td style="white-space:nowrap;">
-          <a class="btn btn-primary btn-sm" asp-page="/Invoices/Edit" asp-route-id="@invoice.Id">Edit</a>
-          <a class="btn btn-infos btn-sm" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Details</a>
-          <a class="btn btn-danger btn-sm" asp-page="/Invoices/Delete" asp-route-id="@invoice.Id">Delete</a>
-        </td>
-      </tr>
-    }
+  @foreach (var invoice in Model.invoices)
+  {
+    <tr>
+      <td>@invoice.Id</td>
+      <td>@invoice.Number</td>
+      <td>@invoice.Status</td>
+      <td>@invoice.ClientName</td>
+      <td>@(invoice.Quantity* invoice.UnitPrice)$</td>
+      <td>@invoice.IssueDate</td>
+      <td>@invoice.DueDate</td>
+      <td style="white-space:nowrap;">
+        <a class="btn btn-primary btn-sm" asp-page="/Invoices/Edit" asp-route-id="@invoice.Id">Edit</a>
+        <a class="btn btn-infos btn-sm" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Details</a>
+        <a class="btn btn-danger btn-sm" asp-page="/Invoices/Delete" asp-route-id="@invoice.Id">Delete</a>
+      </td>
+    </tr>
+  }
   </tbody>
+  </table>
