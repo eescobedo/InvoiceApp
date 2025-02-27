@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using InvoiceApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InvoiceApp.Services
 {
@@ -11,5 +12,7 @@ namespace InvoiceApp.Services
         protected ApplicationDbContext()
         {
         }
+
+        public DbSet<Invoice> Invoices { get; set; } = null!;
     }
 }

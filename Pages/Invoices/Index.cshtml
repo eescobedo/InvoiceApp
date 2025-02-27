@@ -1,0 +1,75 @@
+@page
+@model InvoiceApp.Pages.Invoices.IndexModel
+@{
+}
+
+<h2 class="text-center mb-3">Invoices</h2>
+
+<input type="text" id="searchInput" placeholder="Search..." class="form-control mb-3" onkeyup="searchInvoices()" />
+
+<a class="btn btn-primary" asp-page="/Invoices/Create">New Invoice</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Invoice No</th>
+      <th>Status</th>
+      <th>Client</th>
+      <th>Total Price</th>
+      <th>Issue Date</th>
+      <th>Due Date</th>
+      <th>Action</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    @foreach (var invoice in Model.invoices)
+    {
+      <tr>
+        <td>@invoice.Id</td>
+        <td>@invoice.Number</td>
+        <td>@invoice.Status</td>
+        <td>@invoice.ClientName</td>
+        <td>@(invoice.Quantity* invoice.UnitPrice)$</td>
+        <td>@invoice.IssueDate</td>
+        <td>@invoice.DueDate</td>
+        <td style="white-space:nowrap;">
+          <a class="btn btn-primary btn-sm" asp-page="/Invoices/Edit" asp-route-id="@invoice.Id">Edit</a>
+          <a class="btn btn-infos btn-sm" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Details</a>
+          @* <a class="btn btn-danger btn-sm" asp-page="/Invoices/Delete" asp-route-id="@invoice.Id">Delete</a> *@
+          <a href="#" onclick="confirmDelete(@invoice.Id)" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<script>
+
+  function searchInvoices() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('.table-group-divider tr');
+    rows.forEach(row => {
+      const columns = row.querySelectorAll('td');
+      let found = false;
+      columns.forEach(column => {
+        if (column.textContent.toLowerCase().indexOf(searchInput) > -1) {
+          found = true;
+        }
+      });
+      if (found) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function confirmDelete(id) {
+    if (confirm("Are you sure you want to delete this invoice?")) {
+      window.location.href = "/Invoices/Delete?id=" + id;
+    }
+  }
+
+</script>

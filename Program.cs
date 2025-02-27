@@ -8,7 +8,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var connectionString = builder.Configuration.GetConnectionString("MacConnection");
     options.UseSqlServer(connectionString);
 });
 
