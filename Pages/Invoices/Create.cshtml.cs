@@ -9,7 +9,7 @@ namespace InvoiceApp.Pages.Invoices
   {
 
     private readonly ApplicationDbContext _context;
-    
+
     [BindProperty]
     public InvoiceDto InvoiceDto { get; set; } = new InvoiceDto();
 
@@ -43,10 +43,10 @@ namespace InvoiceApp.Pages.Invoices
         Phone = InvoiceDto.Phone,
         Address = InvoiceDto.Address,
       };
-      
+
       _context.Invoices.Add(invoice);
       _context.SaveChanges();
-      
+
       return RedirectToPage("/Invoices/Index");
 
 

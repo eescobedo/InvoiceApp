@@ -12,7 +12,7 @@ public class DeleteModel : PageModel
     {
         _context = context;
     }
-    
+
     public IActionResult OnGet(int id)
     {
         var invoice = _context.Invoices.Find(id);
@@ -22,7 +22,7 @@ public class DeleteModel : PageModel
             _context.Invoices.Remove(invoice);
             _context.SaveChanges();
         }
-        
+
         return RedirectToPage("/Invoices/Index");
     }
 }
