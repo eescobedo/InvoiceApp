@@ -19,7 +19,7 @@
             <label for="" class="col-sm-4 col-form-label">Invoice No</label>
             <div class="col-sm-8">
               <input class="form-control" asp-for="InvoiceDto.Number"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.Number"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.Number"></span>
             </div>
           </div>
 
@@ -38,7 +38,7 @@
             <label for="" class="col-sm-4 col-form-label">Issue Date</label>
             <div class="col-sm-8">
               <input class="form-control" type="date" asp-for="InvoiceDto.IssueDate"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.IssueDate"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.IssueDate"></span>
             </div>
           </div>
 
@@ -46,7 +46,7 @@
             <label class="col-sm-4" col-form-label>Due Date</label>
             <div class="col-sm-8">
               <input class="form-control" type="date" asp-for="InvoiceDto.DueDate"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.DueDate"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.DueDate"></span>
             </div>
           </div>
 
@@ -61,28 +61,28 @@
             <label class="col-sm-4" col-form-label>Client</label>
             <div class="col-sm-8">
               <input class="form-control" asp-for="InvoiceDto.ClientName"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.ClientName"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.ClientName"></span>
             </div>
           </div>
           <div class="row mb-3">
             <label class="col-sm-4" col-form-label>Email</label>
             <div class="col-sm-8">
               <input class="form-control" asp-for="InvoiceDto.Email"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.Email"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.Email"></span>
             </div>
           </div>
           <div class="row mb-3">
             <label class="col-sm-4" col-form-label>Phone</label>
             <div class="col-sm-8">
               <input class="form-control" asp-for="InvoiceDto.Phone"/>
-              <span class="text-danger" asp-asp-validation-for="InvoiceDto.Phone"></span>
+              <span class="text-danger" asp-validation-for="InvoiceDto.Phone"></span>
             </div>
-            <div class="row">
-              <label class="col-sm-4" col-form-label>Address</label>
-              <div class="col-sm-8">
-                <input class="form-control" asp-for="InvoiceDto.Address"/>
-                <span class="text-danger" asp-asp-validation-for="InvoiceDto.Address"></span>
-              </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-4" col-form-label>Address</label>
+            <div class="col-sm-8">
+              <input class="form-control" asp-for="InvoiceDto.Address"/>
+              <span class="text-danger" asp-validation-for="InvoiceDto.Address"></span>
             </div>
           </div>
         </div>
@@ -122,21 +122,22 @@
 
   <button type="submit" class="btn btn-primary me-2">Submit</button>
   <a class="btn btn-outline-primary" asp-page="/Invoices/Index" role="button">Cancel</a>
-  
+
 </form>
 <script>
-  
-  function updateTotalPrice(){
+
+  function updateTotalPrice() {
     let quantity = document.getElementById("quantityInput").value;
     let unitPrice = document.getElementById("unitPriceInput").value;
-    
-    if (isNaN(quantity) || isNaN(unitPrice)){
-      document.getElementById("totalPriceInput").value = 0;  
+
+    if (isNaN(quantity) || isNaN(unitPrice)) {
+      document.getElementById("totalPriceInput").value = 0;
     } else {
       let total = quantity * unitPrice;
       document.getElementById("totalPriceInput").value = total;
     }
   }
-    updateTotalPrice();
-  
+
+  updateTotalPrice();
+
 </script>
