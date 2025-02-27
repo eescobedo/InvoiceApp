@@ -1,9 +1,16 @@
 @page
-@model InvoiceApp.Pages.Invoices.CreateModel
+@model InvoiceApp.Pages.Invoices.EditModel
 @{
-  ViewData["Title"] = "Create";
 }
-<h2 class="text-center mb-3">New Invoice</h2>
+<h2 class="text-center mb-3">Edit Invoice</h2>
+
+@if (Model.successMessage.Length > 0)
+{
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>@Model.successMessage</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+}
 
 <form action="" method="post">
   <div class="row g-2 mb-3">
@@ -14,6 +21,13 @@
         </div>
         <div class="card-body">
 
+          <div class="row mb-3">
+            <label for="" class="col-sm-4 col-form-label">Invoice ID</label>
+            <div class="col-sm-8">
+              <input class="form-control-plaintext" readonly value="@Model.Invoice.Id"/>
+            </div>
+          </div>
+          
           <div class="row mb-3">
             <label for="" class="col-sm-4 col-form-label">Invoice No</label>
             <div class="col-sm-8">
