@@ -1,4 +1,4 @@
-@page
+@page "{pageNumber:int?}"
 @model InvoiceApp.Pages.Invoices.IndexModel
 @{
 }
@@ -23,7 +23,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody class="table-group-divider">
+  <tbody class="table-group-divider" id="invoiceTableBody">
     @foreach (var invoice in Model.invoices)
     {
       <tr>
@@ -36,8 +36,7 @@
         <td>@invoice.DueDate</td>
         <td style="white-space:nowrap;">
           <a class="btn btn-primary btn-sm" asp-page="/Invoices/Edit" asp-route-id="@invoice.Id">Edit</a>
-          <a class="btn btn-infos btn-sm" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Details</a>
-          @* <a class="btn btn-danger btn-sm" asp-page="/Invoices/Delete" asp-route-id="@invoice.Id">Delete</a> *@
+          <a class="btn btn-info btn-sm" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Details</a>
           <a href="#" onclick="confirmDelete(@invoice.Id)" class="btn btn-danger btn-sm">Delete</a>
         </td>
       </tr>
@@ -45,11 +44,19 @@
   </tbody>
 </table>
 
+<div id="paginationControls">
+  <button onclick="previousPage()" @(Model.CurrentPage == 1 ? "disabled" : "")>Previous</button>
+  <span id="pageNumber">@Model.CurrentPage</span>
+  <button onclick="nextPage()" @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")>Next</button>
+</div>
+
 <script>
+  //let currentPage = 1;
+  //const itemsPerPage = 10;
 
   function searchInvoices() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
-    const rows = document.querySelectorAll('.table-group-divider tr');
+    const rows = document.querySelectorAll('#invoiceTableBody tr');
     rows.forEach(row => {
       const columns = row.querySelectorAll('td');
       let found = false;
@@ -58,12 +65,9 @@
           found = true;
         }
       });
-      if (found) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
+      row.style.display = found ? '' : 'none';
     });
+    updatePagination();
   }
 
   function confirmDelete(id) {
@@ -72,4 +76,36 @@
     }
   }
 
+  function updatePagination() {
+    const rows = document.querySelectorAll('#invoiceTableBody tr');
+    let visibleRows = Array.from(rows).filter(row => row.style.display !== 'none');
+    visibleRows.forEach((row, index) => {
+      row.style.display = (index >= (currentPage - 1) * itemsPerPage && index < currentPage * itemsPerPage) ? '' : 'none';
+    });
+    document.getElementById('pageNumber').textContent = currentPage;
+  }
+
+  function previousPage() {
+    const currentPage = parseInt(document.getElementById('pageNumber').textContent);
+    if (currentPage > 1) {
+      window.location.href = `?currentPage=${currentPage - 1}`;
+    }
+  }
+
+  function nextPage() {
+    const currentPage = parseInt(document.getElementById('pageNumber').textContent);
+    const totalPages = parseInt('@Model.TotalPages');
+    if (currentPage < totalPages) {
+      window.location.href = `?currentPage=${currentPage + 1}`;
+    }
+
+    @* const rows = document.querySelectorAll('#invoiceTableBody tr');
+    let visibleRows = Array.from(rows).filter(row => row.style.display !== 'none');
+    if (currentPage * itemsPerPage < visibleRows.length) {
+      currentPage++;
+      updatePagination();
+    } *@
+  }
+
+  //# updatePagination();
 </script>
